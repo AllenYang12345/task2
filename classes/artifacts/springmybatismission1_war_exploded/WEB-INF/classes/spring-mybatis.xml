@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+    <!-- 开启注解 -->
+    <context:annotation-config />
+    <!-- 引入属性文件 -->
+    <context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true" />
+    <context:property-placeholder location="classpath:*.properties" />
+    <!-- 自动扫描(自动注入) -->
+    <context:component-scan base-package="com.system"/>
+
+    <import resource="c3p0.xml"/>
+    <!--<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">-->
+        <!--<constructor-arg index="0" ref="sqlSessionFactory"/>-->
+    <!--</bean>-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="com.system.model"/>
+        <property name="mapperLocations" value="classpath:UserDao.xml"/>
+    </bean>
+
+    <!--配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--注入sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!--给出需要扫描Dao接口包-->
+        <property name="basePackage" value="com.system.dao"/>
+    </bean>
+
+    <!--<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="mapperInterface" value="com.system.dao.UserDao"/>-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--</bean>-->
+    <!--<bean id="userService" class="com.system.service.UserService">-->
+        <!--<property name="userDao" ref="userDao" />-->
+    <!--</bean>-->
+
+    <!-- 事务管理器配置,单数据源事务 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- 支持注解式事务 -->
+    <!--<tx:annotation-driven transaction-manager="txManager" />-->
+    <!-- 采用xml配置的方式：使用别人写好的功能，没有源码，就可以用xml配置 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager"> <!-- 仍然使用transactionManager作为事务管理组件 -->
+        <tx:attributes>
+            <!--REQUIRED：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。这是默认值。-->
+            <tx:method name="insert*" rollback-for="java.lang.RuntimeException"/>  <!-- 在哪些方法上添加事务管理 -->
+            <tx:method name="change*" />             <!-- 这里写方法名 -->
+            <tx:method name="select*" read-only="true"/>           <!-- 支持通配符 -->
+            <tx:method name="read*" read-only="true"/>           <!-- 支持通配符 -->
+            <tx:method name="delete*" />
+            <!--<tx:method name="getDeletedNotes" />-->
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>  <!-- 作用在哪些组件上 -->
+        <aop:pointcut id="target" expression="execution(* UserController+.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="target"/>
+    </aop:config>
+
+</beans>

@@ -1,0 +1,44 @@
+[INFO ][2018/09/28 22:53:31,859][org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:305)]
+Root WebApplicationContext: initialization started
+[INFO ][2018/09/28 22:53:31,896][org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:582)]
+Refreshing Root WebApplicationContext: startup date [Fri Sep 28 22:53:31 CST 2018]; root of context hierarchy
+[INFO ][2018/09/28 22:53:31,920][org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)]
+Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO ][2018/09/28 22:53:32,061][org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)]
+Loading XML bean definitions from class path resource [c3p0.xml]
+[INFO ][2018/09/28 22:53:32,183][org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)]
+Loading properties file from class path resource [config.properties]
+[INFO ][2018/09/28 22:53:32,188][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:155)]
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO ][2018/09/28 22:53:32,767][org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:345)]
+Root WebApplicationContext: initialization completed in 905 ms
+[INFO ][2018/09/28 22:53:32,815][org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:489)]
+FrameworkServlet 'SpringMVC': initialization started
+[INFO ][2018/09/28 22:53:32,818][org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:582)]
+Refreshing WebApplicationContext for namespace 'SpringMVC-servlet': startup date [Fri Sep 28 22:53:32 CST 2018]; parent: Root WebApplicationContext
+[INFO ][2018/09/28 22:53:32,818][org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)]
+Loading XML bean definitions from class path resource [spring-mvc.xml]
+[INFO ][2018/09/28 22:53:32,884][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:155)]
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO ][2018/09/28 22:53:33,149][org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543)]
+Mapped "{[/user/main]}" onto public java.lang.String com.system.controller.UserController.queryPages(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model) throws java.lang.Exception
+[INFO ][2018/09/28 22:53:33,150][org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543)]
+Mapped "{[/user/updateUser]}" onto public org.springframework.web.servlet.ModelAndView com.system.controller.UserController.updateUser(com.system.model.User)
+[INFO ][2018/09/28 22:53:33,150][org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543)]
+Mapped "{[/user/deleteUser],methods=[GET]}" onto public java.lang.String com.system.controller.UserController.deleteUser(com.system.model.User)
+[INFO ][2018/09/28 22:53:33,150][org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543)]
+Mapped "{[/user/login]}" onto public org.springframework.web.servlet.ModelAndView com.system.controller.UserController.loginCheck(javax.servlet.http.HttpServletRequest,com.system.model.LoginCommand)
+[INFO ][2018/09/28 22:53:33,151][org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543)]
+Mapped "{[/user/addonelogin]}" onto public org.springframework.web.servlet.ModelAndView com.system.controller.UserController.addlogin(javax.servlet.http.HttpServletRequest,com.system.model.LoginCommand)
+[INFO ][2018/09/28 22:53:33,152][org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543)]
+Mapped "{[/user/]}" onto public java.lang.String com.system.controller.UserController.Loginin()
+[INFO ][2018/09/28 22:53:33,153][org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:543)]
+Mapped "{[/user/update]}" onto public org.springframework.web.servlet.ModelAndView com.system.controller.UserController.update(com.system.model.User)
+[INFO ][2018/09/28 22:53:33,375][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.initControllerAdviceCache(RequestMappingHandlerAdapter.java:534)]
+Looking for @ControllerAdvice: WebApplicationContext for namespace 'SpringMVC-servlet': startup date [Fri Sep 28 22:53:32 CST 2018]; parent: Root WebApplicationContext
+[INFO ][2018/09/28 22:53:33,422][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.initControllerAdviceCache(RequestMappingHandlerAdapter.java:534)]
+Looking for @ControllerAdvice: WebApplicationContext for namespace 'SpringMVC-servlet': startup date [Fri Sep 28 22:53:32 CST 2018]; parent: Root WebApplicationContext
+[INFO ][2018/09/28 22:53:33,494][org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:354)]
+Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+[INFO ][2018/09/28 22:53:33,536][org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:508)]
+FrameworkServlet 'SpringMVC': initialization completed in 720 ms

@@ -1,0 +1,4 @@
+[INFO ][2018/10/18 00:09:09,334][org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:582)]
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7c75222b: startup date [Thu Oct 18 00:09:09 CST 2018]; root of context hierarchy
+[INFO ][2018/10/18 00:09:09,392][org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)]
+Loading XML bean definitions from class path resource [app-context.xml]

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.dao.UserDao">
+    <select id="getUserByID" parameterType="int" resultType="com.system.model.User">
+        select ID,name,QQ,train_major,admiss_time,graduate_school,
+        online_number,Daily_link,oath,coaching_senior,where_know,
+        create_at,update_at from student where student.ID = #{id}
+    </select>
+    <select id="getUserByName" parameterType="String" resultType="com.system.model.User">
+        select ID,name,QQ,train_major,admiss_time,graduate_school,
+        online_number,Daily_link,oath,coaching_senior,where_know,
+        create_at,update_at from student where student.name = #{name}
+    </select>
+    <select id="getUserByOnlineNumber" parameterType="String" resultType="com.system.model.User">
+        select ID,name,QQ,train_major,admiss_time,graduate_school,
+        online_number,Daily_link,oath,coaching_senior,where_know,
+        create_at,update_at from student where student.online_number = #{online_number}
+    </select>
+    <insert id="insert" parameterType="com.system.model.User">
+         <selectKey resultType="int" order="AFTER" keyProperty="id">
+             select LAST_INSERT_ID()
+         </selectKey>
+   INSERT INTO student VALUES (null,#{name},#{qq},#{train_major},#{admiss_time},
+        #{graduate_school},#{online_number},#{daily_link},#{oath},#{coaching_senior},
+        #{where_know},#{create_at},#{update_at})
+</insert>
+    <insert id="insertBatch" useGeneratedKeys="true" parameterType="java.util.List">
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO student
+        (
+        name,QQ,train_major,admiss_time,graduate_school,
+        online_number,Daily_link,oath,coaching_senior,where_know,
+        create_at,update_at
+        )
+        VALUES
+        <foreach item="user" collection="list" index="index" separator=",">
+            (
+            #{user.name},#{user.qq},#{user.train_major},#{user.admiss_time},
+            #{user.graduate_school},#{user.online_number},#{user.daily_link},
+            #{user.oath},#{user.coaching_senior},
+            #{user.where_know},#{user.create_at},#{user.update_at}
+            )
+        </foreach>
+    </insert>
+    <update id="updateUser" parameterType="com.system.model.User">
+    UPDATE student SET name=#{name},QQ=#{qq},train_major=#{train_major},
+    admiss_time=#{admiss_time},graduate_school=#{graduate_school},
+        online_number=#{online_number},Daily_link=#{daily_link},oath=#{oath},
+        coaching_senior=#{coaching_senior},where_know=#{where_know},
+        create_at=#{create_at},update_at=#{update_at} WHERE id=#{id}
+</update>
+    <delete id="deleteUser" parameterType="int">
+    DELETE FROM student WHERE id=#{id}
+    </delete>
+    <select id="getMatchCount" resultType="Integer">
+        select count(*) from login where user_name =#{userName} and password=#{password}
+    </select>
+    <select id="getMatchavailable" resultType="Integer">
+        select count(*) from login where user_name =#{userName}
+    </select>
+    <insert id="addNewlogin" parameterType="com.system.model.LoginCommand" useGeneratedKeys="true">
+        insert into login(user_name,password)values (#{userName},#{password})
+    </insert>
+
+    <select id="findPages" parameterType="com.system.util.Page" resultType="com.system.model.User">
+        select ID,name,QQ,train_major,admiss_time,graduate_school,
+        online_number,Daily_link,oath,coaching_senior,where_know,
+        create_at,update_at from student limit #{startPos},#{pageSize}
+    </select>
+    <select id="countallNumber" resultType="Integer">
+        select count(*) from student
+    </select>
+</mapper>
