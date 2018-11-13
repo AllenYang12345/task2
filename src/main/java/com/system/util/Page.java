@@ -12,6 +12,8 @@ public class Page {
     private boolean hasNext;// 是否有下一页
     private boolean hasLast;// 是否有最后一页
 
+    private int currentPage;
+    private int size;
     //通过构造函数 传入总记录数和当前页
     public Page(int totalCount, int pageNow) {
         this.totalCount = totalCount;

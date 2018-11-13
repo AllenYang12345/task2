@@ -74,32 +74,32 @@
         </table>
     <div align="center">
         <font size="2">第${page.pageNow}页</font>
-        <a href="main.action?pageNow=1" rel="external nofollow" rel="external nofollow" >首页</a>
+        <a href="main.action?pageNow=1" rel="external nofollow"  >首页</a>
         <c:choose>
             <c:when test="${page.pageNow - 1 > 0}">
                 <a href="main.action?pageNow=${page.pageNow - 1}" rel="external nofollow" >上一页</a>
             </c:when>
             <c:when test="${page.pageNow - 1 <= 0}">
-                <a href="main.action?pageNow=1" rel="external nofollow" rel="external nofollow" >上一页</a>
+                <a href="main.action?pageNow=1" rel="external nofollow" >上一页</a>
             </c:when>
         </c:choose>
         <c:choose>
             <c:when test="${page.totalPageCount==0}">
-                <a href="main.action?pageNow=${page.pageNow}" rel="external nofollow" rel="external nofollow" >下一页</a>
+                <a href="main.action?pageNow=${page.pageNow}" rel="external nofollow" >下一页</a>
             </c:when>
             <c:when test="${page.pageNow + 1 < page.totalPageCount}">
                 <a href="main.action?pageNow=${page.pageNow + 1}" rel="external nofollow" >下一页</a>
             </c:when>
             <c:when test="${page.pageNow + 1 >= page.totalPageCount}">
-                <a href="main.action?pageNow=${page.totalPageCount}" rel="external nofollow" rel="external nofollow" >下一页</a>
+                <a href="main.action?pageNow=${page.totalPageCount}" rel="external nofollow" >下一页</a>
             </c:when>
         </c:choose>
         <c:choose>
             <c:when test="${page.totalPageCount==0}">
-                <a href="main.action?pageNow=${page.pageNow}" rel="external nofollow" rel="external nofollow" >尾页</a>
+                <a href="main.action?pageNow=${page.pageNow}" rel="external nofollow" >尾页</a>
             </c:when>
             <c:otherwise>
-                <a href="main.action?pageNow=${page.totalPageCount}" rel="external nofollow" rel="external nofollow" >尾页</a>
+                <a href="main.action?pageNow=${page.totalPageCount}" rel="external nofollow" >尾页</a>
             </c:otherwise>
         </c:choose>
     </div>
