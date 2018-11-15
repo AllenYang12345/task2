@@ -91,15 +91,126 @@ public class UserController {
         String pageNow = request.getParameter("pageNow");
         Page page = null;
         List<User> users = new ArrayList<User>();
+        List<User> users1 = new ArrayList<User>();
         int totalCount =userService.countallNumber();
 
         if (pageNow != null) {
             page = new Page(totalCount, Integer.parseInt(pageNow));
-            users = userService.findPages(page.getStartPos(), page.getPageSize());
+            users1 = userService.findPages(page.getStartPos(), page.getPageSize());
+
+            for (int i=0;i<users1.size();i++){
+                User user2 = new User();
+                user2.setId(users1.get(i).getId());
+                if (users1.get(i).getName()==null){
+                    user2.setName("");
+                }else {
+                    user2.setName(users1.get(i).getName());
+                }
+                if (users1.get(i).getQq()==null){
+                    user2.setQq("");
+                }else {
+                    user2.setQq(users1.get(i).getQq());
+                }
+                if (users1.get(i).getTrain_major()==null){
+                    user2.setTrain_major("");
+                }else {
+                    user2.setTrain_major(users1.get(i).getTrain_major());
+                }
+
+                user2.setAdmiss_time(users1.get(i).getAdmiss_time());
+
+                if (users1.get(i).getGraduate_school()==null){
+                    user2.setGraduate_school("");
+                }else {
+                    user2.setGraduate_school(users1.get(i).getGraduate_school());
+                }
+                if (users1.get(i).getOnline_number()==null){
+                    user2.setOnline_number("");
+                }else {
+                    user2.setOnline_number(users1.get(i).getOnline_number());
+                }
+                if (users1.get(i).getDaily_link()==null){
+                    user2.setDaily_link("");
+                }else {
+                    user2.setDaily_link(users1.get(i).getDaily_link());
+                }
+                if (users1.get(i).getOath()==null){
+                    user2.setOath("");
+                }else {
+                    user2.setOath(users1.get(i).getOath());
+                }
+                if (users1.get(i).getCoaching_senior()==null){
+                    user2.setCoaching_senior("");
+                }else {
+                    user2.setCoaching_senior(users1.get(i).getCoaching_senior());
+                }
+                if (users1.get(i).getWhere_know()==null){
+                    user2.setWhere_know("");
+                }else {
+                    user2.setWhere_know(users1.get(i).getWhere_know());
+                }
+                user2.setCreate_at(users1.get(i).getCreate_at());
+                user2.setUpdate_at(users1.get(i).getUpdate_at());
+                users.add(user2);
+            }
         } else {
             page = new Page(totalCount, 1);
-            users = this.userService.findPages(page.getStartPos(), page.getPageSize());//
-            for (int i=0;i<users.size();i++){
+            users1 = this.userService.findPages(page.getStartPos(), page.getPageSize());
+
+            for (int i=0;i<users1.size();i++){
+                User user2 = new User();
+                user2.setId(users1.get(i).getId());
+                if (users1.get(i).getName()==null){
+                    user2.setName("");
+                }else {
+                    user2.setName(users1.get(i).getName());
+                }
+                if (users1.get(i).getQq()==null){
+                    user2.setQq("");
+                }else {
+                    user2.setQq(users1.get(i).getQq());
+                }
+                if (users1.get(i).getTrain_major()==null){
+                    user2.setTrain_major("");
+                }else {
+                    user2.setTrain_major(users1.get(i).getTrain_major());
+                }
+
+                user2.setAdmiss_time(users1.get(i).getAdmiss_time());
+
+                if (users1.get(i).getGraduate_school()==null){
+                    user2.setGraduate_school("");
+                }else {
+                    user2.setGraduate_school(users1.get(i).getGraduate_school());
+                }
+                if (users1.get(i).getOnline_number()==null){
+                    user2.setOnline_number("");
+                }else {
+                    user2.setOnline_number(users1.get(i).getOnline_number());
+                }
+                if (users1.get(i).getDaily_link()==null){
+                    user2.setDaily_link("");
+                }else {
+                    user2.setDaily_link(users1.get(i).getDaily_link());
+                }
+                if (users1.get(i).getOath()==null){
+                    user2.setOath("");
+                }else {
+                    user2.setOath(users1.get(i).getOath());
+                }
+                if (users1.get(i).getCoaching_senior()==null){
+                    user2.setCoaching_senior("");
+                }else {
+                    user2.setCoaching_senior(users1.get(i).getCoaching_senior());
+                }
+                if (users1.get(i).getWhere_know()==null){
+                    user2.setWhere_know("");
+                }else {
+                    user2.setWhere_know(users1.get(i).getWhere_know());
+                }
+                user2.setCreate_at(users1.get(i).getCreate_at());
+                user2.setUpdate_at(users1.get(i).getUpdate_at());
+                users.add(user2);
             }
         }
         model.addAttribute("user_list", users);
